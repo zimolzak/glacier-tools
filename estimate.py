@@ -38,4 +38,4 @@ while(1):
     print(ctime(eta), '\t est time completion')
     print()
 
-    sleep(10)
+    sleep(30)
