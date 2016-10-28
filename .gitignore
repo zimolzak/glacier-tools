@@ -3,3 +3,5 @@
 !makefile
 !*.pl
 !.gitignore
+!LICENSE
+!Readme.md
