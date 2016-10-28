@@ -1,0 +1,5 @@
+*
+!*.py
+!makefile
+!*.pl
+!.gitignore
