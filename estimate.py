@@ -37,7 +37,7 @@ while(1):
     try:
         est_sec_first = (num_files_total - upload_count) / rate_first
     except ZeroDivisionError:
-        est_sec_first = 999.0
+        est_sec_first = 360000.0
     eta_first = t[1] + est_sec_first
 
     print(upload_count, '\t uploaded out of')
@@ -50,10 +50,11 @@ while(1):
     print(round(est_sec, 1), '\t est sec remain')
     print(ctime(eta), '\t est time completion')
     print('---')
+    print(round(t[1] - t_first, 1), '\t sec elapsed since beginning')
     print(n[1] - n_first, '\t uploaded since beginning')
     print(round(rate_first, 2), '\t rate per sec')
     print(round(est_sec_first, 1), '\t est sec remain')
     print(ctime(eta_first), '\t est time completion')
     print()
 
-    sleep(10)
+    sleep(30)
