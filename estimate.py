@@ -30,14 +30,17 @@ while(1):
     n[1] = upload_count
 
     rate = (n[1] - n[0]) / (t[1] - t[0])
-    est_sec = (num_files_total - upload_count) / rate
+    try:
+        est_sec = (num_files_total - upload_count) / rate
+    except ZeroDivisionError:
+        est_sec = 360000.0 # 100 hr
     eta = t[1] + est_sec
 
     rate_first = (n[1] - n_first) / (t[1] - t_first)
     try:
         est_sec_first = (num_files_total - upload_count) / rate_first
     except ZeroDivisionError:
-        est_sec_first = 360000.0
+        est_sec_first = 360000.0 # 100 hr
     eta_first = t[1] + est_sec_first
 
     print(upload_count, '\t uploaded out of')
