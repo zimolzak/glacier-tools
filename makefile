@@ -3,6 +3,7 @@ upload : files.txt
 
 files.txt : 
 	find . -name '*.jpg' > files.txt
+	find . -name '*.JPG' >> files.txt
 	perl -pi -e 's{^\./}{}' files.txt
 
 clean :
