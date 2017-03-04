@@ -18,4 +18,4 @@ Usage examples
 * If you're scared and just want to see what it's finding and planning
 to upload:
 
-`make files.txt; more files.txt`
+`make clean; make files.txt; more files.txt`
