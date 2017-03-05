@@ -9,25 +9,31 @@ generates a list of filenames. Then runs the command line `aws
 glacier` on each filename, logging details including key:value data
 returned from Glacier.
 
-Usage examples
+My usual usage
 --------
 
-* My usual workflow:
-
 `make clean`
+
 `make files.txt`
+
 `#### pause and inspect files.txt ####`
 
 `make test`
+
 `#### pause and inspect log.txt   ####`
 
 `make rest # concurrent w/ the next line`
+
 `python3 estimate.py # in separate terminal`
 
-* To instead run the whole enchilada (if you trust it without
-  inspecting the list of filenames or doing a test upload):
+Fire-and-forget usage
+--------
+
+If you trust it without inspecting the list of filenames or doing a
+test upload:
 
 `make clean`
+
 `make`
 
 Tips/warnings
