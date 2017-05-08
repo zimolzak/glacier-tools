@@ -20,4 +20,4 @@ files.txt :
 	perl -pi -e 's{^\./}{}' files.txt
 
 clean :
-	rm files.txt
+	rm -f files.txt
