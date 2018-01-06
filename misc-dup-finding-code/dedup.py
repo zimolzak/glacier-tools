@@ -1,3 +1,8 @@
+## Take two directories and find any MP3 or M4U files that are
+## duplicated from one directory to the other. Do this using file
+## sizes and then SHA-1 hashes if needed. Therefore, it works even if
+## the files have different names but identical bytes.
+
 from subprocess import getoutput
 import os
 
@@ -10,8 +15,12 @@ debug = False
 ########
 
 def last_index(S, char):
+    """Return the HIGHEST index in S where character char is found. Kind
+    of like str.find(sub) but starts from the end of the string,
+    instead of the beginning.
+    """
     indices = list(range(len(S)))
-    indices.reverse()
+    indices.reverse() # Like [4, 3, 2, 1, 0]
     for i in indices:
         if S[i] == char:
             return i
@@ -25,6 +34,9 @@ def path2file(path):
     return path[last_index(path, '/') + 1 : ]
 
 def reference_lists(find_lines):
+    """Return list of pathnames containing mp3 or m4a, and the sizes of
+    each file (in the same order.
+    """
     pathnames = []
     sizes = []
     for line in find_lines:
@@ -32,7 +44,6 @@ def reference_lists(find_lines):
             pathnames.append(line)
             s = os.path.getsize(line)
             sizes.append(s)
-            emptysha = ' '*40
     return [pathnames, sizes]
 
 ########
