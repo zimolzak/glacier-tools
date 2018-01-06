@@ -13,9 +13,15 @@ def last_index(S, char):
             return i
     return -1
 
+def escape(pathname):
+    olds = [" ",  "'",   "(",  ")",  ",",  "&"]
+    news = ['\ ', "\\'", "\(", "\)", "\,", "\&"]
+    for o, n in zip(olds, news):
+        pathname = pathname.replace(o, n)
+    return pathname
+
 def sha_path(pathname):
-    escaped = pathname.replace(' ', '\ ').replace("'", "\\'").replace("(", "\(").replace(")", "\)").replace(",", "\,").replace("&", "\&")
-    return getoutput("shasum " + escaped).split()[0]
+    return getoutput("shasum " + escape(pathname)).split()[0]
 
 def path2file(path):
     return path[last_index(path, '/') + 1 : ]
