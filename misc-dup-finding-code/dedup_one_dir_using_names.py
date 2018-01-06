@@ -1,5 +1,5 @@
-## Take two directories and find any files that are duplicated inside
-## the tree. Do this using filenames, sizes and then SHA-1 hashes if
+## Take one directory and find any files that are duplicated inside
+## the tree. Do this using filenames, sizes, and then SHA-1 hashes if
 ## needed. Therefore, it ASSUMES files with different names contain
 ## different bytes. (This is to help performance, because my files are
 ## all called IMG_7732.JPG etc. and highly unlikely to have same bytes
@@ -7,6 +7,10 @@
 
 from subprocess import getoutput
 import os
+from dedup_lib import escape ## WRITE ME.
+
+ROOT_DIR = "/Users/ajz/Pictures/Photos Library.photoslibrary/Masters/"
+YEAR = '2014'
 
 COMMAND_B = "find /Users/ajz/Music/iTunes/iTunes\ Media/Music"
 #COMMAND_B = "find /Users/ajz/Music/iTunes/iTunes\ Media/Music/Weezer"
@@ -22,40 +26,6 @@ DEBUG = False
 # if yes, then for each f in sublist, does its hash match sibs?
 # if no, then it needs to be renamed. CONTINUE.
 # if yes, then mark it as a dup. CONTINUE.
-
-########
-
-def last_index(S, char):
-    """Return the HIGHEST index in S where character char is found. Kind
-    of like str.find(sub) but starts from the end of the string,
-    instead of the beginning.
-    """
-    indices = list(range(len(S)))
-    indices.reverse() # Like [4, 3, 2, 1, 0]
-    for i in indices:
-        if S[i] == char:
-            return i
-    return -1
-
-def sha_path(pathname):
-    escaped = pathname.replace(' ', '\ ').replace("'", "\\'").replace("(", "\(").replace(")", "\)").replace(",", "\,").replace("&", "\&")
-    return getoutput("shasum " + escaped).split()[0]
-
-def path2file(path):
-    return path[last_index(path, '/') + 1 : ]
-
-def reference_lists(find_lines):
-    """Return list of pathnames containing mp3 or m4a, and the sizes of
-    each file (in the same order.
-    """
-    pathnames = []
-    sizes = []
-    for line in find_lines:
-        if 'mp3' in line or 'm4a' in line:
-            pathnames.append(line)
-            s = os.path.getsize(line)
-            sizes.append(s)
-    return [pathnames, sizes]
 
 ########
 
