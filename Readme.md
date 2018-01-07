@@ -26,6 +26,16 @@ My usual usage
 
 `python3 estimate.py # in separate terminal`
 
+`#### WAIT ####`
+
+`mkdir ~/SYSADMIN/glacier/2018-01-07`
+
+`mv files.txt log-* ~/SYSADMIN/glacier/2018-01-07`
+
+`mv sourceme.txt (wherever that may be) to same dir.`
+
+`mv [any folders] ../Glacier\ fully\ done/`
+
 Fire-and-forget usage
 --------
 
