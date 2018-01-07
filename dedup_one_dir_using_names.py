@@ -9,9 +9,9 @@
 
 ## Usage:
 ##     python dedup_one_dir_using_names.py > sourceme.txt
-##     Then skim sourceme.txt, edit out any bad lines.
+##     Then skim sourceme.txt, edit out few non-cmd lines at top, look for "** MY FILE'S SIZE...."
 ##     source sourceme.txt
-##     Then cd .. to GlacierActive dir & start using the makefile!
+##     Then start using the makefile!
 
 from subprocess import getoutput
 import os
@@ -19,7 +19,7 @@ from dedup_lib import escape, File
 
 # Any DIR variable must end in slash.
 ROOT_DIR = escape("/Users/ajz/Pictures/Photos Library.photoslibrary/Masters/")
-YEAR = '2014'
+YEAR = '2013'
 FIND_CMD_BASE = "find {}{} -type f"
 DESTINATION_DIR = '/Users/ajz/Desktop/GlacierActive/'
 MOVE_BASIC = 'mv {} {}{}-photoslibrary' # three format args
