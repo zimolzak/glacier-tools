@@ -4,39 +4,34 @@ Glacier tools
 Ad-hoc scripts for uploading photos to my Amazon Web Services Glacier
 vault, and for figuring out when the upload is likely to finish up.
 
+Optionally: move highly-nested files from Photos Library to the
+"GlacierActive" directory.
+
 Finds likely image/movie files in the directory where it's run and
 generates a list of filenames. Then runs the command line `aws
-glacier` on each filename, logging details including key:value data
+glacier` on each filename, logging details like the key:value data
 returned from Glacier.
 
 My usual usage
 --------
 
-`make clean`
-
-`make files.txt`
-
-`#### pause and inspect files.txt ####`
-
-`make test`
-
-`#### pause and inspect log.txt   ####`
-
-`make rest # concurrent w/ the next line`
-
-`python3 estimate.py # in separate terminal`
-
-`#### WAIT ####`
-
-`mkdir ~/Dropbox/SYSADMIN/glacier/2018-01-07`
-
-`mv files.txt log-* ~/Dropbox/SYSADMIN/glacier/2018-01-07`
-
-`mv sourceme.txt (wherever that may be) to same dir.`
-
-`mv [any folders] ../Glacier\ fully\ done/`
-
-Consider writing a description of a random sample of the pics.
+    #### edit dedup_one_dir_using_names.py to point to right dir(s) as approp.
+    python dedup_one_dir_using_names.py > sourceme.txt
+    #### skim sourceme.txt, edit out few non-cmd lines at top, look for "** MY FILE'S SIZE...."
+    source sourceme.txt
+    make clean
+    make files.txt
+    #### pause and inspect files.txt ####
+    make test
+    #### pause and inspect log.txt   ####
+    make rest # concurrent w/ the next line
+    python3 estimate.py # in separate terminal
+    #### WAIT ####
+    mkdir ~/Dropbox/SYSADMIN/glacier/2018-01-07
+    mv files.txt log-* ~/Dropbox/SYSADMIN/glacier/2018-01-07
+    mv sourceme.txt (wherever that may be) to same dir.
+    mv [any folders] ../Glacier\ fully\ done/
+    #### Consider writing a description of a random sample of the pics
 
 Fire-and-forget usage
 --------
