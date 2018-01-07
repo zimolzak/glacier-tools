@@ -28,13 +28,15 @@ My usual usage
 
 `#### WAIT ####`
 
-`mkdir ~/SYSADMIN/glacier/2018-01-07`
+`mkdir ~/Dropbox/SYSADMIN/glacier/2018-01-07`
 
-`mv files.txt log-* ~/SYSADMIN/glacier/2018-01-07`
+`mv files.txt log-* ~/Dropbox/SYSADMIN/glacier/2018-01-07`
 
 `mv sourceme.txt (wherever that may be) to same dir.`
 
 `mv [any folders] ../Glacier\ fully\ done/`
+
+Consider writing a description of a random sample of the pics.
 
 Fire-and-forget usage
 --------
