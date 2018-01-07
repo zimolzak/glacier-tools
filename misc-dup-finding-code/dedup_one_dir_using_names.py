@@ -7,6 +7,12 @@
 
 ## Assumes a directory called "2014-photoslibrary" or similar exists.
 
+## Usage:
+##     python dedup_one_dir_using_names.py > sourceme.txt
+##     Then skim sourceme.txt, edit out any bad lines.
+##     source sourceme.txt
+##     Then cd .. to GlacierActive dir & start using the makefile!
+
 from subprocess import getoutput
 import os
 from dedup_lib import escape, File
@@ -14,21 +20,22 @@ from dedup_lib import escape, File
 # Any DIR variable must end in slash.
 ROOT_DIR = escape("/Users/ajz/Pictures/Photos Library.photoslibrary/Masters/")
 YEAR = '2014'
-COMMAND_BASE = "find {}{} -type f"
+FIND_CMD_BASE = "find {}{} -type f"
 DESTINATION_DIR = '/Users/ajz/Desktop/GlacierActive/'
 MOVE_BASIC = 'mv {} {}{}-photoslibrary' # three format args
 MOVE_RENAME = 'mv {} {}{}-photoslibrary/{}' # four format args
 
-COMMAND = COMMAND_BASE.format(ROOT_DIR, YEAR)
-FILES = [File(p) for p in getoutput(COMMAND).splitlines()]
+# Use Linux 'find' to get files in ROOT_DIR
+FIND_CMD = FIND_CMD_BASE.format(ROOT_DIR, YEAR)
+FILES = [File(p) for p in getoutput(FIND_CMD).splitlines()]
 print(len(FILES), 'files found....')
 
+# List those with duplicate names
 FILENAME_LIST = [f.filename for f in FILES]
 FILES_WITH_DUP_NAMES = []
 for f in FILES:
     if FILENAME_LIST.count(f.filename) > 1:
         FILES_WITH_DUP_NAMES.append(f)
-
 DUP_SET = set([f.filename for f in FILES_WITH_DUP_NAMES])
 N_FILES = len(FILES_WITH_DUP_NAMES)
 N_NAMES = len(DUP_SET)
@@ -36,12 +43,15 @@ print(N_FILES, 'files with duplicate names....')
 print(N_NAMES, 'filenames shared among them....')
 print(N_FILES / N_NAMES, 'ratio....')
 
+# Dict we'll use later for renaming dup-named files.
 COUNT_MOVES = {}
 for fn in DUP_SET:
     COUNT_MOVES[fn] = 0
 
+# Generate 'mv' commands as appropriate
 for myfile in FILES:
     if myfile.filename not in DUP_SET:
+        # no need to rename
         print(MOVE_BASIC.format(escape(myfile.pathname),
                                 DESTINATION_DIR,
                                 YEAR))
@@ -57,6 +67,7 @@ for myfile in FILES:
         myfile_size_appearances = sizes.count(myfile.size())
         assert myfile_size_appearances > 0
         if myfile_size_appearances == 1:
+            # rename and move, no need to check SHA
             fn = myfile.filename
             COUNT_MOVES[fn] += 1
             n = COUNT_MOVES[fn]
