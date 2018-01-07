@@ -5,68 +5,65 @@
 ## all called IMG_7732.JPG etc. and highly unlikely to have same bytes
 ## w/ different names.)
 
+## Assumes a directory called "2014-photoslibrary" or similar exists.
+
 from subprocess import getoutput
 import os
 from dedup_lib import escape, File
 
+# Any DIR variable must end in slash.
 ROOT_DIR = escape("/Users/ajz/Pictures/Photos Library.photoslibrary/Masters/")
 YEAR = '2014'
 COMMAND_BASE = "find {}{} -type f"
+DESTINATION_DIR = '/Users/ajz/Desktop/GlacierActive/'
+MOVE_BASIC = 'mv {} {}{}-photoslibrary' # three format args
+MOVE_RENAME = 'mv {} {}{}-photoslibrary/{}' # four format args
+
 COMMAND = COMMAND_BASE.format(ROOT_DIR, YEAR)
 FILES = [File(p) for p in getoutput(COMMAND).splitlines()]
 print(len(FILES), 'files found....')
 
 FILENAME_LIST = [f.filename for f in FILES]
-FILES_DUP_NAMES = []
+FILES_WITH_DUP_NAMES = []
 for f in FILES:
     if FILENAME_LIST.count(f.filename) > 1:
-        FILES_DUP_NAMES.append(f)
+        FILES_WITH_DUP_NAMES.append(f)
 
-DUP_SET = set([f.filename for f in FILES_DUP_NAMES])
-N_FILES = len(FILES_DUP_NAMES)
+DUP_SET = set([f.filename for f in FILES_WITH_DUP_NAMES])
+N_FILES = len(FILES_WITH_DUP_NAMES)
 N_NAMES = len(DUP_SET)
 print(N_FILES, 'files with duplicate names....')
 print(N_NAMES, 'filenames shared among them....')
 print(N_FILES / N_NAMES, 'ratio....')
 
-## next we need to pair them up somehow
+COUNT_MOVES = {}
+for fn in DUP_SET:
+    COUNT_MOVES[fn] = 0
 
-for f in FILES:
-    if f.filename not in DUP_SET:
-        print('mv {} /Users/ajz/Desktop/GlacierActive/{}-photoslibrary'.format(escape(f.pathname), YEAR))
+for myfile in FILES:
+    if myfile.filename not in DUP_SET:
+        print(MOVE_BASIC.format(escape(myfile.pathname),
+                                DESTINATION_DIR,
+                                YEAR))
         continue
     else:
-        f_obj_list = []
-        for fo in FILES_DUP_NAMES:
-            if fo.filename == f.filename:
-                f_obj_list.append(fo)
-        sizes = [f.size() for f in f_obj_list]
-        print(f.filename, sizes)
-        for s in sizes:
-            if sizes.count(s) > 1:
-                print('  ** SOME SIZES DUPLICATED!')
-    continue ## DELETE ME
-
-
-
-    # use that to generate list of filenames. "path2file()"
-    # sublist of those filenames that have dups
-    size = os.path.getsize(f.pathname)
-    sha = ' '*40
-    if size in size_list:
-    # for each f in sublist, does its size match sibs?
-    # if yes, then for each f in sublist, does its hash match sibs?
-        path_a = PATH_LIST_A[SIZE_LIST_A.index(size_b)]
-        PATH_MATCHING_A.append(path_a)
-        sha_a = sha_path(path_a)
-        sha_b = sha_path(f)
-        if sha_a == sha_b:
-        # if yes, then mark it as a dup. CONTINUE.
-            UNIQ_B.append(False)
+        # list all files that share my name
+        files_that_share = []
+        for fo in FILES_WITH_DUP_NAMES:
+            if fo.filename == myfile.filename:
+                files_that_share.append(fo)
+        # get sizes of all files in that list
+        sizes = [f.size() for f in files_that_share]
+        if sizes.count(myfile.size()) > 1:
+            print("  ** MY FILE'S SIZE EQUALS ANOTHER!", myfile.filename)
+            ## FIXME - insert SHA-1 business here!
         else:
-        # if no, then it needs to be renamed. CONTINUE.
-            UNIQ_B.append(True)
-    else: # size of file B is unique
-    # if no, then it needs to be renamed. CONTINUE.
-        UNIQ_B.append(True)
-        PATH_MATCHING_A.append(None)
+            fn = myfile.filename
+            COUNT_MOVES[fn] += 1
+            n = COUNT_MOVES[fn]
+            ext = fn[fn.index('.'):]
+            newname = fn.replace(ext, '_' + str(n) + ext)
+            print(MOVE_RENAME.format(escape(myfile.pathname),
+                                     DESTINATION_DIR,
+                                     YEAR,
+                                     newname))
