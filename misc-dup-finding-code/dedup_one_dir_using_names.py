@@ -11,13 +11,10 @@ from dedup_lib import escape
 
 ROOT_DIR = escape("/Users/ajz/Pictures/Photos Library.photoslibrary/Masters/")
 YEAR = '2014'
-COMMAND_BASE = "find {}{} -iname '*.{}'"
-
-COMMAND_J = COMMAND_BASE.format(ROOT_DIR, YEAR, 'jpg')
-COMMAND_P = COMMAND_BASE.format(ROOT_DIR, YEAR, 'png')
-
-# get list of pathnames (find)
-FIND_LINES = getoutput(COMMAND_J).splitlines() + getoutput(COMMAND_P).splitlines()
+COMMAND_BASE = "find {}{} -type f"
+COMMAND = COMMAND_BASE.format(ROOT_DIR, YEAR)
+FIND_LINES = getoutput(COMMAND).splitlines() # catch exceptions?
+print(len(FIND_LINES), 'files found....')
 
 for line in FIND_LINES:
     continue ## DELETE ME
