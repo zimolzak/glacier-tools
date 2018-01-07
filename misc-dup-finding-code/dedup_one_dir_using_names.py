@@ -22,16 +22,33 @@ for f in FILES:
     if FILENAME_LIST.count(f.filename) > 1:
         FILES_DUP_NAMES.append(f)
 
+DUP_SET = set([f.filename for f in FILES_DUP_NAMES])
 N_FILES = len(FILES_DUP_NAMES)
-N_NAMES = len(set([f.filename for f in FILES_DUP_NAMES]))
+N_NAMES = len(DUP_SET)
 print(N_FILES, 'files with duplicate names....')
 print(N_NAMES, 'filenames shared among them....')
 print(N_FILES / N_NAMES, 'ratio....')
 
 ## next we need to pair them up somehow
 
-for f in FILES_DUP_NAMES:
+for f in FILES:
+    if f.filename not in DUP_SET:
+        print('mv {} /Users/ajz/Desktop/GlacierActive/{}-photoslibrary'.format(escape(f.pathname), YEAR))
+        continue
+    else:
+        f_obj_list = []
+        for fo in FILES_DUP_NAMES:
+            if fo.filename == f.filename:
+                f_obj_list.append(fo)
+        sizes = [f.size() for f in f_obj_list]
+        print(f.filename, sizes)
+        for s in sizes:
+            if sizes.count(s) > 1:
+                print('  ** SOME SIZES DUPLICATED!')
     continue ## DELETE ME
+
+
+
     # use that to generate list of filenames. "path2file()"
     # sublist of those filenames that have dups
     size = os.path.getsize(f.pathname)
