@@ -54,10 +54,9 @@ for myfile in FILES:
                 files_that_share.append(fo)
         # get sizes of all files in that list
         sizes = [f.size() for f in files_that_share]
-        if sizes.count(myfile.size()) > 1:
-            print("  ** MY FILE'S SIZE EQUALS ANOTHER!", myfile.filename)
-            ## FIXME - insert SHA-1 business here!
-        else:
+        myfile_size_appearances = sizes.count(myfile.size())
+        assert myfile_size_appearances > 0
+        if myfile_size_appearances == 1:
             fn = myfile.filename
             COUNT_MOVES[fn] += 1
             n = COUNT_MOVES[fn]
@@ -67,3 +66,7 @@ for myfile in FILES:
                                      DESTINATION_DIR,
                                      YEAR,
                                      newname))
+        else:
+            assert myfile_size_appearances > 1
+            print("  ** MY FILE'S SIZE EQUALS ANOTHER!", myfile.filename)
+            ## FIXME - insert SHA-1 business here!
