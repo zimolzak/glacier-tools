@@ -38,3 +38,12 @@ def reference_lists(find_lines):
             s = os.path.getsize(line)
             sizes.append(s)
     return [pathnames, sizes]
+
+class File:
+    def __init__(self, pathname):
+        self.pathname = pathname
+        self.filename = path2file(pathname)
+    def size(self):
+        return os.path.getsize(self.pathname)
+    def sha(self):
+        return sha_path(self.pathname)
