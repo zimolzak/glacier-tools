@@ -17,6 +17,7 @@ files.txt :
 	find . -iname '*.mov' >> files.txt
 	find . -iname '*.png' >> files.txt
 	find . -iname '*.gif' >> files.txt
+	find . -iname '*.avi' >> files.txt
 	perl -pi -e 's{^\./}{}' files.txt
 
 clean :
