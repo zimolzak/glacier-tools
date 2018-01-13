@@ -16,9 +16,10 @@ My usual usage
 --------
 
     #### edit dedup_one_dir_using_names.py to point to right dir(s) as approp.
-    python dedup_one_dir_using_names.py > sourceme.txt
+    python dedup_one_dir_using_names.py > sourceme.txt # 20 sec for 13,000 files
     #### skim sourceme.txt, edit out few non-cmd lines at top, look for "** MY FILE'S SIZE...."
-    source sourceme.txt
+    #### mkdir ~/Desktop/GlacierActive/xxxx-photoslibrary
+    source sourceme.txt # 60 sec / 13000.
     make clean
     make files.txt
     #### pause and inspect files.txt ####
