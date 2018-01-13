@@ -79,5 +79,5 @@ for myfile in FILES:
                                      newname))
         else:
             assert myfile_size_appearances > 1
-            print("  ** MY FILE'S SIZE EQUALS ANOTHER!", myfile.filename)
+            print("  ** MY FILE'S SIZE EQUALS ANOTHER!", myfile.pathname)
             ## FIXME - insert SHA-1 business here!
