@@ -17,7 +17,7 @@ My usual usage
 
     #### edit dedup_one_dir_using_names.py to point to right dir(s) as approp.
     python dedup_one_dir_using_names.py > sourceme.txt # 20 sec for 13,000 files
-    #### skim sourceme.txt, edit out few non-cmd lines at top, look for "** MY FILE'S SIZE...."
+    #### skim sourceme.txt, rm non-cmd lines at top, look for "** MY FILE'S SIZE...."
     #### mkdir ~/Desktop/GlacierActive/xxxx-photoslibrary
     source sourceme.txt # 60 sec / 13000.
     make clean
@@ -28,9 +28,7 @@ My usual usage
     make rest # concurrent w/ the next line
     python3 estimate.py # in separate terminal
     #### WAIT ####
-    mkdir ~/Dropbox/SYSADMIN/glacier/2018-01-07
-    mv files.txt log-* ~/Dropbox/SYSADMIN/glacier/2018-01-07
-    mv sourceme.txt (wherever that may be) to same dir.
+    make movephotos # or make move
     mv [any folders] ../Glacier\ fully\ done/
     #### Consider writing a description of a random sample of the pics
 
@@ -51,11 +49,12 @@ Tips/warnings
   archive description, so consider making directory names somewhat
   descriptive.
 
-* If you Control-C it in the middle of an upload, remember to save
-  your `log.txt` file. It will get clobbered the next time you run an
-  upload (using makefile). Also you'd have to figure out where the
-  upload left off and edit `files.txt` or `rest.txt` or whatever,
-  because we don't remove lines one by one from the list of filenames.
+* If you Control-C it (or it dies) in the middle of an upload,
+  remember to save your `log.txt` file. It will get clobbered the next
+  time you make `upload` or `test` or `rest`. Also you'd have to
+  figure out where the upload left off and edit `files.txt` or
+  `rest.txt` or whatever, because we don't remove lines one by one
+  from the list of filenames.
 
 Benchmarks
 ========
