@@ -16,15 +16,12 @@ My usual usage
 --------
 
     #### edit dedup_one_dir_using_names.py to point to right dir(s) as approp.
-    python dedup_one_dir_using_names.py > sourceme.txt # 20 sec for 13,000 files
-    #### skim sourceme.txt, rm non-cmd lines at top, look for "** MY FILE'S SIZE...."
-    #### mkdir ~/Desktop/GlacierActive/xxxx-photoslibrary
-    source sourceme.txt # 60 sec / 13000.
+    make sourceme.txt
+    mkdir ~/Desktop/GlacierActive/xxxx-photoslibrary
+    make move-initial # 60 sec / 13000.
     make clean
     make files.txt
-    #### pause and inspect files.txt ####
     make test
-    #### pause and inspect log.txt   ####
     make rest # concurrent w/ the next line
     python3 estimate.py # in separate terminal
     #### WAIT ####
@@ -40,7 +37,7 @@ test upload:
 
 `make clean`
 
-`make`
+`make upload`
 
 Tips/warnings
 --------
