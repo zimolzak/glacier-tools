@@ -15,10 +15,13 @@ returned from Glacier.
 My usual usage
 --------
 
+    #### Start here if moving files to working dir & deduplicating.
     #### edit dedup_one_dir_using_names.py to point to right dir(s) as approp.
     make sourceme.txt
     mkdir ~/Desktop/GlacierActive/xxxx-photoslibrary
     make move-initial # 60 sec / 13000.
+
+    #### Start here if files are already in the working directory.
     make clean
     make files.txt
     make test

@@ -19,7 +19,7 @@ from dedup_lib import escape, File
 
 # Any DIR variable must end in slash.
 ROOT_DIR = escape("/Users/ajz/Pictures/Photos Library.photoslibrary/Masters/")
-YEAR = '2012'
+YEAR = '2011'
 FIND_CMD_BASE = "find {}{} -type f"
 DESTINATION_DIR = '/Users/ajz/Desktop/GlacierActive/'
 MOVE_BASIC = 'mv {} {}{}-photoslibrary' # three format args
