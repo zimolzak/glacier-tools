@@ -28,13 +28,13 @@ test : files.txt
 	./glacier.pl test.txt | tee log.txt
 	cp log.txt log-`date "+%Y-%m-%d-%H%M"`.txt
 	@echo Hint: inspect log.txt
-	@echo Hint: make rest
+	@echo Hint: make rest.... python3 estimate.py
 
 rest : files.txt
 	tail -n +11 files.txt > rest.txt
 	./glacier.pl rest.txt | tee log.txt
 	cp log.txt log-`date "+%Y-%m-%d-%H%M"`.txt
-	@echo Hint: make movephotos
+	@echo Hint: make move (usually)
 
 movephotos : move
 	mv -nv sourceme.txt ~/Dropbox/SYSADMIN/glacier/`date "+%Y-%m-%d"`

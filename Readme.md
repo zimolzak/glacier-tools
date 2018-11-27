@@ -28,7 +28,7 @@ My usual usage
     make rest # concurrent w/ the next line
     python3 estimate.py # in separate terminal
     #### WAIT ####
-    make movephotos # or make move
+    make move # or make movephotos if you're using dedup workflow
     mv [any folders] ../Glacier\ fully\ done/
     #### Consider writing a description of a random sample of the pics
 
