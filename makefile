@@ -43,7 +43,7 @@ move :
 # would fail if run at stroke of midnight
 	mkdir -pv /Users/ajz/Dropbox/SYSADMIN/glacier/`date "+%Y-%m-%d"`
 	mv -nv files.txt log-* ~/Dropbox/SYSADMIN/glacier/`date "+%Y-%m-%d"`
-	echo Please remember to MOVE YOUR MEDIA out of this GlacierActive folder!
+	@echo Please remember to MOVE YOUR MEDIA out of this GlacierActive folder!
 
 upload : files.txt
 	./glacier.pl files.txt | tee log.txt
