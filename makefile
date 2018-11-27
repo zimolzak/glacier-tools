@@ -21,7 +21,7 @@ files.txt :
 	find . -iname '*.tif*' >> files.txt
 	perl -pi -e 's{^\./}{}' files.txt
 	@echo Hint: inspect files.txt
-	@echo Hint: make test; python3 estimate.py
+	@echo Hint: make test.... python3 estimate.py
 
 test : files.txt
 	head -n 10 files.txt > test.txt
