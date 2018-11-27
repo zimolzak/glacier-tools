@@ -34,7 +34,7 @@ rest : files.txt
 	tail -n +11 files.txt > rest.txt
 	./glacier.pl rest.txt | tee log.txt
 	cp log.txt log-`date "+%Y-%m-%d-%H%M"`.txt
-	@echo Hint: make move (usually)
+	@echo Hint: make move unless doing dedup workflow
 
 movephotos : move
 	mv -nv sourceme.txt ~/Dropbox/SYSADMIN/glacier/`date "+%Y-%m-%d"`
