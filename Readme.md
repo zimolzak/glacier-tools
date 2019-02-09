@@ -69,6 +69,9 @@ AT&T fiber with symmetrical upload and download about 100 Mbps theoretical.
     4.524 Mb/s (megabits per second)
     29 minutes / GB
 
+    Reality: about 1 hr 16 min.
+    658.4 kB/s (kilobytes per second)
+    25 minutes / GB
 
 Oldest
 --------
