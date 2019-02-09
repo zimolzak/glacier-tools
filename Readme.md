@@ -59,6 +59,17 @@ Tips/warnings
 Benchmarks
 ========
 
+Very most recent 2019-02-08
+--------
+
+AT&T fiber with symmetrical upload and download about 100 Mbps theoretical.
+
+    2931832 KiB / 612 * 83 / (720 sec)
+    565.5 kB/s (kilobytes per second)
+    4.524 Mb/s (megabits per second)
+    29 minutes / GB
+
+
 Oldest
 --------
 
