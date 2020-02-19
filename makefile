@@ -1,3 +1,14 @@
+files.txt :
+	find . -iname '*.jpg' > files.txt
+	find . -iname '*.mov' >> files.txt
+	find . -iname '*.png' >> files.txt
+	find . -iname '*.gif' >> files.txt
+	find . -iname '*.avi' >> files.txt
+	find . -iname '*.tif*' >> files.txt
+	perl -pi -e 's{^\./}{}' files.txt
+	@echo Hint: inspect files.txt
+	@echo Hint: make test.... python3 estimate.py
+
 sourceme.txt :
 	python dedup_one_dir_using_names.py > sourceme.txt
 	@echo Hint: Inspect sourceme.txt
@@ -11,17 +22,6 @@ move-initial :
 
 clean :
 	rm -f files.txt test.txt rest.txt *~ log.txt
-
-files.txt :
-	find . -iname '*.jpg' > files.txt
-	find . -iname '*.mov' >> files.txt
-	find . -iname '*.png' >> files.txt
-	find . -iname '*.gif' >> files.txt
-	find . -iname '*.avi' >> files.txt
-	find . -iname '*.tif*' >> files.txt
-	perl -pi -e 's{^\./}{}' files.txt
-	@echo Hint: inspect files.txt
-	@echo Hint: make test.... python3 estimate.py
 
 test : files.txt
 	head -n 10 files.txt > test.txt
