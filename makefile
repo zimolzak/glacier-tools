@@ -34,6 +34,7 @@ rest : files.txt
 	tail -n +11 files.txt > rest.txt
 	./glacier.pl rest.txt | tee log.txt
 	cp log.txt log-`date "+%Y-%m-%d-%H%M"`.txt
+	@echo SUCCESS!!
 	@echo Hint: make move unless doing dedup workflow
 
 movephotos : move
@@ -44,6 +45,7 @@ move :
 	mkdir -pv /Users/ajz/Dropbox/SYSADMIN/glacier/`date "+%Y-%m-%d"`
 	mv -nv files.txt log-* ~/Dropbox/SYSADMIN/glacier/`date "+%Y-%m-%d"`
 	@echo Please remember to MOVE YOUR MEDIA out of this GlacierActive folder!
+	@echo Such as mv out-of-dropbox-2019-09to12/ ../2-for-ext-hdd-glacier/
 
 upload : files.txt
 	./glacier.pl files.txt | tee log.txt
