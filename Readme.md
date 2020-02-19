@@ -28,9 +28,10 @@ My usual usage
     make rest # concurrent w/ the next line
     python3 estimate.py # in separate terminal
     #### WAIT ####
-    make move # or make movephotos if you're using dedup workflow
-    mv [any folders] ../Glacier\ fully\ done/
+    make move # Moves logs only. make movephotos if using dedup workflow.
+    mv [any folders] ../2-for-ext-hdd-glacier/
     #### Consider writing a description of a random sample of the pics
+    make clean # If you want to be less confusing next time
 
 Fire-and-forget usage
 --------
