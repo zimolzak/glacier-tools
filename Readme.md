@@ -15,7 +15,7 @@ returned from Glacier.
 My usual usage
 --------
 
-    #### Start here if moving files to working dir & deduplicating.
+    #### Skip this usually, unless moving files to working dir & deduplicating.
     #### edit dedup_one_dir_using_names.py to point to right dir(s) as approp.
     make sourceme.txt
     mkdir ~/Desktop/GlacierActive/xxxx-photoslibrary
