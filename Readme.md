@@ -33,6 +33,13 @@ My usual usage
     #### Consider writing a description of a random sample of the pics
     make clean # If you want to be less confusing next time
 
+If running in a different directory
+--------
+
+Copy the following: `makefile`, `glacier.pl`, `estimate.py`.
+
+Useful, for e.g. running the scripts from `/Users/foo/Pictures/Photos\ Library.photoslibrary/originals`.
+
 Fire-and-forget usage
 --------
 
