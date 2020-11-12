@@ -9,20 +9,6 @@ files.txt :
 	@echo Hint: inspect files.txt
 	@echo Hint: make test.... python3 estimate.py
 
-sourceme.txt :
-	python dedup_one_dir_using_names.py > sourceme.txt
-	@echo Hint: Inspect sourceme.txt
-	@echo Hint: mkdir ~/Desktop/GlacierActive/xxxx-photoslibrary
-	@echo Hint: make move-initial
-
-move-initial :
-	sh sourceme.txt
-	@echo Hint: make clean
-	@echo Hint: make files.txt
-
-clean :
-	rm -f files.txt test.txt rest.txt *~ log.txt
-
 test : files.txt
 	head -n 10 files.txt > test.txt
 	./glacier.pl test.txt | tee log.txt
@@ -37,9 +23,6 @@ rest : files.txt
 	@echo SUCCESS!!
 	@echo Hint: make move unless doing dedup workflow
 
-movephotos : move
-	mv -nv sourceme.txt ~/Dropbox/SYSADMIN/glacier/`date "+%Y-%m-%d"`
-
 move :
 # would fail if run at stroke of midnight
 	mkdir -pv /Users/ajz/Dropbox/SYSADMIN/glacier/`date "+%Y-%m-%d"`
@@ -47,6 +30,25 @@ move :
 	@echo Please remember to MOVE YOUR MEDIA out of this GlacierActive folder!
 	@echo Such as mv out-of-dropbox-2019-09to12/ ../2-for-ext-hdd-glacier/
 	@echo Hint: make clean if you want to be nice to future users.
+
+#### Atypical workflows below this line.
+
+sourceme.txt :
+	python dedup_one_dir_using_names.py > sourceme.txt
+	@echo Hint: Inspect sourceme.txt
+	@echo Hint: mkdir ~/Desktop/GlacierActive/xxxx-photoslibrary
+	@echo Hint: make move-initial
+
+move-initial :
+	sh sourceme.txt
+	@echo Hint: make clean
+	@echo Hint: make files.txt
+
+clean :
+	rm -f files.txt test.txt rest.txt *~ log.txt
+
+movephotos : move
+	mv -nv sourceme.txt ~/Dropbox/SYSADMIN/glacier/`date "+%Y-%m-%d"`
 
 upload : files.txt
 	./glacier.pl files.txt | tee log.txt
