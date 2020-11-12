@@ -1,5 +1,6 @@
 files.txt :
 	find . -iname '*.jpg' > files.txt
+	find . -iname '*.jpeg' > files.txt
 	find . -iname '*.mov' >> files.txt
 	find . -iname '*.png' >> files.txt
 	find . -iname '*.gif' >> files.txt
