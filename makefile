@@ -6,6 +6,7 @@ files.txt :
 	find . -iname '*.gif' >> files.txt
 	find . -iname '*.avi' >> files.txt
 	find . -iname '*.tif*' >> files.txt
+	find . -iname '*.webp' >> files.txt
 	perl -pi -e 's{^\./}{}' files.txt
 	@echo Hint: inspect files.txt
 	@echo Hint: make test.... python3 estimate.py
